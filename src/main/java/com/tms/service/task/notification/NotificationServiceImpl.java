@@ -24,10 +24,8 @@ public class NotificationServiceImpl implements NotificationService {
         List<TaskDTO> overDueTasks = taskService.getOverDueTasks();
         if (!overDueTasks.isEmpty()) {
             StringBuilder text = new StringBuilder();
-            text.append("Notice! Uncompleted tasks:\n");
-            overDueTasks.forEach(task -> {
-                text.append(task.getCode()).append("\n");
-            });
+            text.append("Notice! We have uncompleted tasks:\n");
+            overDueTasks.forEach(task -> text.append("due date for task with code: ").append(task.getCode()).append(" is expired!").append("\n"));
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom("realsipez@gmail.com");
             message.setTo("realsipez@gmail.com");

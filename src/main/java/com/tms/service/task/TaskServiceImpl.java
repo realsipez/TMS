@@ -60,7 +60,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDTO> searchTasks(TaskCriteria taskCriteria) {
-        List<Task> tasks = taskRepository.searchTasks(
+        List<Task> tasks = taskRepository.findAllByStatusOrPriorityOrDueDate(
                 Objects.nonNull(taskCriteria.getStatus()) ? TaskStatus.valueOf(taskCriteria.getStatus()) : null,
                 Objects.nonNull(taskCriteria.getPriority()) ? TaskPriority.valueOf(taskCriteria.getPriority()) : null,
                 Objects.nonNull(taskCriteria.getPriority()) ? taskCriteria.getDueDate() : null

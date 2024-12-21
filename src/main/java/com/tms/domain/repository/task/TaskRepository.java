@@ -17,13 +17,8 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     void deleteByCode(String code);
 
-    @Query("select t from Task t where t.dueDate > :date")
+    @Query("select t from Task t where t.dueDate < :date")
     List<Task> findAllOverDueTasks(@Param("date") String date);
 
-    @Query("select t from Task t where t.status = :status and t.priority = :priority and t.dueDate = :dueDate")
-    List<Task> searchTasks(
-            @Param("status") TaskStatus status,
-            @Param("priority") TaskPriority priority,
-            @Param("dueDate") String dueDate
-    );
+    List<Task> findAllByStatusOrPriorityOrDueDate(TaskStatus status, TaskPriority priority, String dueDate);
 }
