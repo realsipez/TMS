@@ -2,6 +2,7 @@ package com.tms.service.user;
 
 import com.tms.domain.model.user.Role;
 import com.tms.domain.model.user.User;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,13 +11,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+@AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
     private final transient User user;
-
-    public UserDetailsImpl(User user) {
-        this.user = user;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -5,6 +5,7 @@ import com.tms.dto.task.TaskDTO;
 import com.tms.dto.task.TaskSummary;
 import com.tms.service.task.TaskService;
 import com.tms.service.task.notification.NotificationService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,15 +13,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/task")
+@AllArgsConstructor
 public class TaskController {
 
     private final TaskService taskService;
     private final NotificationService notificationService;
-
-    public TaskController(TaskService taskService, NotificationService notificationService) {
-        this.taskService = taskService;
-        this.notificationService = notificationService;
-    }
 
     @PostMapping("/add")
     public ResponseEntity<String> addTask(@RequestBody TaskDTO taskDTO) {

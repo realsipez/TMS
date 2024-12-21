@@ -12,6 +12,7 @@ import com.tms.dto.user.RegistrationRequest;
 import com.tms.dto.user.RegistrationResponse;
 import com.tms.exception.RoleNotFoundException;
 import com.tms.util.JwtTokenUtil;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,11 +22,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Map;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final JwtTokenUtil jwtTokenUtil;
@@ -34,15 +35,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final UserDetailsService userDetailsService;
-
-    public UserServiceImpl(JwtTokenUtil jwtTokenUtil, AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder, UserRepository userRepository, RoleRepository roleRepository, UserDetailsService userDetailsService) {
-        this.jwtTokenUtil = jwtTokenUtil;
-        this.authenticationManager = authenticationManager;
-        this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.userDetailsService = userDetailsService;
-    }
 
     public User loadUserByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(

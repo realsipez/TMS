@@ -6,18 +6,16 @@ import com.tms.dto.user.RegistrationRequest;
 import com.tms.dto.user.RegistrationResponse;
 import com.tms.exception.RoleNotFoundException;
 import com.tms.service.user.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@AllArgsConstructor
 public class AuthController {
 
     private final UserService userService;
-
-    public AuthController(UserService userService) {
-        this.userService = userService;
-    }
 
     @PostMapping("/register")
     public ResponseEntity<RegistrationResponse> registerUser(@RequestBody RegistrationRequest registrationRequest) throws RoleNotFoundException {
