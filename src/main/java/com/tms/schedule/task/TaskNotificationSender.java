@@ -10,13 +10,13 @@ import java.util.Date;
 
 @Slf4j
 @Component
-public class OverDueTasksNotification {
+public class TaskNotificationSender {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     private final NotificationService notificationService;
 
-    public OverDueTasksNotification(NotificationService notificationService) {
+    public TaskNotificationSender(NotificationService notificationService) {
         this.notificationService = notificationService;
     }
 

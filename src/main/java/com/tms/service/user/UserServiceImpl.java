@@ -20,7 +20,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Map;
 
 @Service
@@ -59,7 +61,7 @@ public class UserServiceImpl implements UserService {
         user.setRole(Sets.newHashSet(role));
         user.setUsername(registrationRequest.getUsername());
         user.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
-        user.setCreatedAt(LocalDate.now().toString());
+        user.setCreatedAt(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
         userRepository.save(user);
         return new RegistrationResponse("Success", "User successfully registered");
     }
@@ -90,6 +92,7 @@ public class UserServiceImpl implements UserService {
             User user = loadUserByUsername(username);
             Role admin = getRoleByName("ADMIN");
             user.setRole(Sets.newHashSet(admin));
+            user.setUpdatedAt(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
             userRepository.save(user);
             return "User with " + username + " now are administrator";
         } catch (UsernameNotFoundException e) {
