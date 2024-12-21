@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class TaskNotificationSender {
 
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     private final NotificationService notificationService;
 
